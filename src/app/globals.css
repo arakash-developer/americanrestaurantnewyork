@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0c0c0c;
-  --foreground: #f5f0e8;
+  --background: #080808;
+  --foreground: #f2ede4;
 }
 
 @theme inline {
@@ -20,8 +20,15 @@ body {
   font-family: Georgia, 'Times New Roman', serif;
 }
 
-.font-display {
-  font-family: 'Georgia', serif;
+/* Noise grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.35;
 }
 
 @keyframes shimmer {
@@ -30,15 +37,11 @@ body {
 }
 
 .shimmer {
-  background: linear-gradient(
-    90deg,
-    #c9a84c 0%,
-    #f0d080 50%,
-    #c9a84c 100%
-  );
+  background: linear-gradient(90deg, #c9a84c 0%, #f0d080 50%, #c9a84c 100%);
   background-size: 200% auto;
   animation: shimmer 3s linear infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
